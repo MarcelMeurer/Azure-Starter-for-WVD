@@ -1,0 +1,38 @@
+﻿@using WVDStarter.Models
+@model AzureAdConnect.AadUser
+
+@{
+    ViewBag.Title = "User Profile";
+}
+<h2>@ViewBag.Title</h2>
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <td>Name</td>
+        <td>@Model.DisplayName</td>
+    </tr>
+    <tr>
+        <td>Last Name</td>
+        <td>@Model.SurName</td>
+    </tr>
+    <tr>
+        <td>First Name</td>
+        <td>@Model.GivenName</td>
+    </tr>
+    <tr>
+        <td>E-Mail</td>
+        <td>@Model.Email</td>
+    </tr>
+    <tr>
+        <td>Upn</td>
+        <td>@Model.Upn</td>
+    </tr>
+    <tr>
+        <td>Overall session hosts</td>
+        <td>@(@WVD.WvdStarter.SessionHosts.Count)</td>
+    </tr>
+    <tr>
+        <td>Assigned session hosts</td>
+        <td>@(@WVD.WvdStarter.SessionHostsByUser(Model.Upn).Count)</td>
+    </tr>
+</table>

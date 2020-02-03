@@ -1,0 +1,61 @@
+﻿@using System.Windows.Forms
+@using Newtonsoft.Json
+@model List<WVDStarter.Models.WVD.SessionHost>
+<br />
+@{
+    var hostPools = Model.GroupBy(n => n.FriendlyHostPoolName).OrderBy(m => m.Key);
+}
+@foreach (var hostPool in hostPools)
+{
+    <h2>@hostPool.Key</h2>
+    <br />
+    @Html.Raw("<div class=\"row\">")
+    foreach (var item in hostPool.OrderBy(n => n.SessionHostName))
+    {
+        var nextPowerState = "deallocated";
+        var infoMessage = "Information:\n"
+                          + "Allow new sessions: " + item.AllowNewSession + "\n"
+                          + "Last heart beat: " + item.LastHeartBeat.ToString() + "\n"
+                          + "OS version: " + item.OsVersion + "\n"
+                          + "Sessions: " + item.Sessions + "\n"
+                          + "State: " + item.Status.ToString() + "\n";
+        if (item.LastPowerState.Contains("deallocated"))
+        {
+            nextPowerState = "running";
+        }
+        <div class="col-sm-3" align="center">
+            <div class="thumbnail text-center">
+                @{
+                    if (item.LastPowerState.Contains("deallocated"))
+                    {
+                        <img src="~/Content/images/Computer-empty.png" alt="" class="img-responsive" width="180">
+                    }
+                    else if (item.Status.ToString().Contains("vailable"))
+                    {
+                        <img src="~/Content/images/Computer-empty-green.png" alt="" class="img-responsive" width="180">
+                    }
+                    else
+                    {
+                        <img src="~/Content/images/Computer-empty-yellow.png" alt="" class="img-responsive" width="180">
+                    }
+                }
+                <div class="caption">
+                    <p>@item.LastPowerState.Replace("PowerState/", "")</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2"><img src="~/Content/images/power-off-line.png" alt="Toggle power state" OnClick="VdiChangePowerState('@item.SessionHostName','@nextPowerState');" class="img-responsive" style="min-width: 20px" width="20"></div>
+                <div class="col-sm-8"><b align="center">@item.SessionHostName.Split('.')[0]</b></div>
+                <div class="col-sm-2"><img src="~/Content/images/info-circle-line.png" alt="Info" class="img-responsive" style="min-width: 20px" width="20" title="@infoMessage"></div>
+            </div>
+        </div>
+    }
+    @Html.Raw("</div>")
+}
+
+
+@*@JsonConvert.SerializeObject(Model)*@
+
+
+
+

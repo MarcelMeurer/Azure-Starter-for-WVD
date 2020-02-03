@@ -1,0 +1,94 @@
+﻿<div id="vdiFrame" style="min-width: 200px;  min-height: 200px">
+    <h2>Your personal assigned session hosts are loading ...</h2>
+</div>
+<br />
+<style>
+    .vdiFrameLoader {
+        background-image: url("/Content/images/loading.gif");
+        background-repeat: no-repeat;
+        background-position: center center;
+        color: transparent;
+        text-shadow: 0 0 5px rgba(0,0,0,0.5);
+    }
+
+    .thumbnail {
+        position: relative;
+    }
+
+    .caption {
+        position: absolute;
+        top: 45%;
+        left: -5px;
+        width: 100%;
+    }
+</style>
+<p><a id="refresh" class="btn btn-default">Refresh</a></p>
+<script type="text/javascript">
+    $(function() {
+        var vdiShowLoadingAnimation = true;
+        
+        $('#refresh').on('click',
+            function() {
+                console.log('Start: Getting vdi state');
+                if (vdiShowLoadingAnimation) $('#vdiFrame').addClass('vdiFrameLoader');
+                $('#vdiFrame').load('@Url.Action("SessionHostsFrame", "Home")',
+                    function() {
+                        $('#vdiFrame').removeClass('vdiFrameLoader');
+                        console.log('Stop: Getting vdi state');
+                        vdiShowLoadingAnimation = true;
+                    });
+            });
+        setInterval(function() {
+                console.log('Refreshing');
+                vdiShowLoadingAnimation = false;
+                $('#refresh').click();
+            },
+            30 * 1000);
+        $('#refresh').click();
+    });
+    var vdiSelectedSessionHost = '';
+    var vdiNewPowerState = '';
+
+    function VdiChangePowerState(sessionHost, powerState) {
+        //alert(id+'   '+ name);
+        vdiSelectedSessionHost = sessionHost;
+        vdiNewPowerState = powerState;
+        $('#vdiConfirmText').text('Are you sure to change the power state of '+vdiSelectedSessionHost+' to '+vdiNewPowerState+'?');
+        $("#vdiConfirmChangePowerState").modal('toggle');
+    }
+    function VdiChangePowerStateConfirmed() {
+        console.log('Changing power state for session host ' + vdiSelectedSessionHost + ' to ' + vdiNewPowerState);
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("VdiSessionHostSetPowerState","Data")',
+            data: 'id=' + vdiSelectedSessionHost + '&id2=' + vdiNewPowerState,
+            success: function(msg) {
+                console.log('Changing power state for session host ' + vdiSelectedSessionHost + ' to ' + vdiNewPowerState+' - OK!');
+                vdiShowLoadingAnimation = false;
+                $('#refresh').click();
+            },
+            error: function(msg) {
+                console.log('Changing power state for session host ' + vdiSelectedSessionHost + ' to ' + vdiNewPowerState+' - FAILED!');
+                alert("There was an error while changing the power state:\n" + msg.responseText);
+            }
+        });
+    }
+</script>
+
+<div class="modal fade" id="vdiConfirmChangePowerState" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                Toggle power state of session host
+            </div>
+            <div class="modal-body">
+                <span id="vdiConfirmText"></span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="VdiChangePowerStateConfirmed();">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
