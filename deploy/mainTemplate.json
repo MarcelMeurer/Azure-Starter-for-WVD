@@ -110,8 +110,8 @@
                      "value": "https://login.microsoftonline.com/"
                   },
                   {
-                     "name": "PROJECT-X",
-                     "value": "bin/Endpoint"
+                     "name": "PROJECT",
+                     "value": "bin"
                   }
                ]
             }
@@ -125,7 +125,7 @@
                   "[resourceId('Microsoft.Web/sites', concat(variables('uSiteName'),''))]"
                ],
                "properties": {
-                  "RepoUrl": "https://github.com/MarcelMeurer/Project-MySmartScale.git",
+                  "RepoUrl": "https://github.com/MarcelMeurer/Azure-Starter-for-WVD.git",
                   "branch": "master",
                   "IsManualIntegration": true
                }
