@@ -1,0 +1,136 @@
+{
+   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+   "contentVersion": "1.0.0.0",
+   "parameters": {
+      "siteName": {
+         "type": "string"
+      }
+   },
+   "variables": {
+      "uSiteName": "[concat(parameters('siteName'),'-',uniqueString(resourceGroup().id,subscription().subscriptionId))]"
+   },
+   "resources": [
+      {
+         "apiVersion": "2018-02-01",
+         "name": "pid-737fb30e-b001-45e8-9a09-b4a21bee257f",
+         "type": "Microsoft.Resources/deployments",
+         "properties": {
+            "mode": "Incremental",
+            "template": {
+               "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+               "contentVersion": "1.0.0.0",
+               "resources": [
+               ]
+            }
+         }
+      },
+      {
+         "type": "Microsoft.Web/serverfarms",
+         "apiVersion": "2018-02-01",
+         "name": "[variables('uSiteName')]",
+         "location": "[resourceGroup().location]",
+         "sku": {
+            "name": "S1",
+            "tier": "Standard",
+            "size": "S1",
+            "family": "S",
+            "capacity": 1
+         },
+         "kind": "app",
+         "properties": {
+            "name": "[variables('uSiteName')]",
+            "perSiteScaling": false,
+            "reserved": false,
+            "targetWorkerCount": 0,
+            "targetWorkerSizeId": 0
+         }
+      },
+      {
+         "type": "Microsoft.Insights/components",
+         "kind": "web",
+         "name": "[variables('uSiteName')]",
+         "apiVersion": "2018-05-01-preview",
+         "location": "[resourceGroup().location]",
+         "properties": {
+            "Application_Type": "web"
+         }
+      },
+      {
+         "type": "Microsoft.Web/sites",
+         "apiVersion": "2018-02-01",
+         "name": "[concat(variables('uSiteName'),'')]",
+         "location": "[resourceGroup().location]",
+         "dependsOn": [
+            "[resourceId('Microsoft.Web/serverfarms', variables('uSiteName'))]",
+            "[resourceId('Microsoft.Insights/components', variables('uSiteName'))]"
+         ],
+         "kind": "app",
+         "properties": {
+            "enabled": true,
+            "serverFarmId": "[resourceId('Microsoft.Web/serverfarms',variables('uSiteName'))]",
+            "httpsOnly": true,
+            "siteConfig": {
+               "alwaysOn": true,
+               "use32BitWorkerProcess": false,
+               "appSettings": [
+                  {
+                     "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
+                     "value": "[reference(concat('microsoft.insights/components/', variables('uSiteName'))).InstrumentationKey]"
+                  },
+                  {
+                     "name": "config:cacheSecondsWvdSchema",
+                     "value": "110"
+                  },
+                  {
+                     "name": "config:cacheSecondsSessionHost",
+                     "value": "55"
+                  },
+                  {
+                     "name": "config:secondsRefreshLock",
+                     "value": "30"
+                  },
+                  {
+                     "name": "ida:ClientId",
+                     "value": "<Enter the client id of your service principal>"
+                  },
+                  {
+                     "name": "ida:Domain",
+                     "value": "<Enter the id of your Azure AD tenant - itprocloud.de>"
+                  },
+                  {
+                     "name": "ida:TenantId",
+                     "value": "<Enter the id of your Azure AD tenant>"
+                  },
+                  {
+                     "name": "ida:ClientSecret",
+                     "value": "<Enter the client key of your service principal>"
+                  },
+                  {
+                     "name": "ida:AADInstance",
+                     "value": "https://login.microsoftonline.com/"
+                  },
+                  {
+                     "name": "PROJECT-X",
+                     "value": "bin/Endpoint"
+                  }
+               ]
+            }
+         },
+         "resources": [
+            {
+               "name": "web",
+               "type": "sourcecontrols",
+               "apiVersion": "2018-02-01",
+               "dependsOn": [
+                  "[resourceId('Microsoft.Web/sites', concat(variables('uSiteName'),''))]"
+               ],
+               "properties": {
+                  "RepoUrl": "https://github.com/MarcelMeurer/Project-MySmartScale.git",
+                  "branch": "master",
+                  "IsManualIntegration": true
+               }
+            }
+         ]
+      }
+   ]
+}
