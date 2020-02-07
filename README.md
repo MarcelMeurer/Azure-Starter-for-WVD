@@ -105,9 +105,21 @@ Access the web app and log in with an user account having access to assigned VDI
 
 
 
+### Update your deployment to the newest version
+
+Azure App Starter for WVD can be updated from GitHub very quickly. Open the web app in the Azure portal, navigate to "Deploymen Center" and click "Refresh". This pulls a newer version from the repo to update the app.
+
+![Install-WVDStarter-15](images/Install-WVDStarter-15.png)
 
 
 
+### Working with different Azure AD tenants (Microsoft Demo Environment)
+
+Usually, the WVD tenant and the resources (sessions hosts) are in the same AAD tenant. If this not read this document to use Azure Starter for WVD in this environment: <a href="2-Tenant-Environment.md" target="_blank">2-Tenant-Environment.md</a>
+
+
+
+### Deploy to Azure
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMarcelMeurer%2FAzure-Starter-for-WVD%2Fmaster%2Fdeploy%2FmainTemplate.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a>
 
