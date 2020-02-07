@@ -94,10 +94,6 @@
                      "value": "<Enter the client id of your service principal>"
                   },
                   {
-                     "name": "ida:Domain",
-                     "value": "<Enter the id of your Azure AD tenant - itprocloud.de>"
-                  },
-                  {
                      "name": "ida:TenantId",
                      "value": "<Enter the id of your Azure AD tenant>"
                   },
