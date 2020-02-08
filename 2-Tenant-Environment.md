@@ -37,3 +37,7 @@ If you use another tenant group name as "Default Tenant Group" add another varia
 
 
 Restart the web app to work with Azure Starter for WVD
+
+
+
+Read more on [Readme.md](readme.md)
