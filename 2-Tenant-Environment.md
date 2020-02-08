@@ -40,4 +40,4 @@ Restart the web app to work with Azure Starter for WVD
 
 
 
-Read more on [Readme.md](readme.md)
+Read more on [Readme.md](../readme.md)
