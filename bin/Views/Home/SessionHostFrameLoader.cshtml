@@ -32,8 +32,11 @@
                 console.log('Start: Getting vdi state');
                 if (vdiShowLoadingAnimation) $('#vdiFrame').addClass('vdiFrameLoader');
                 $('#vdiFrame').load('@Url.Action("SessionHostsFrame", "Home")',
-                    function() {
+                    function(response, status, xhr) {
                         $('#vdiFrame').removeClass('vdiFrameLoader');
+                        if ( status === 'error' ) {
+                            window.location.href = '@Url.Action("RefreshSession", "UserProfile")';
+                        }
                         console.log('Stop: Getting vdi state');
                         vdiShowLoadingAnimation = true;
                     });

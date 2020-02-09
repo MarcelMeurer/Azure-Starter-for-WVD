@@ -90,6 +90,18 @@
                      "value": "30"
                   },
                   {
+                     "name": "config:autoDeallocateMinutes",
+                     "value": "0"
+                  },
+                  {
+                     "name": "config:autoDeallocateHostPools",
+                     "value": ""
+                  },
+                  {
+                     "name": "config:autoDeallocateCronJobMinutes",
+                     "value": "20"
+                  },
+                  {
                      "name": "ida:ClientId",
                      "value": "<Enter the client id of your service principal>"
                   },

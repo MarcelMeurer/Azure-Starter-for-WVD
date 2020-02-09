@@ -7,7 +7,7 @@ Users can easily log on to the web app using their Azure AD credentials. The per
 
 - [x] Preview
 - [ ] Review preview and make some improvements
-- [ ] Automatically deallocate unused VDIs / session hosts
+- [x] Automatically deallocate unused VDIs / session hosts
 - [ ] ...
 
 ### Screenshot
@@ -104,6 +104,29 @@ Access the web app and log in with an user account having access to assigned VDI
 ![Install-WVDStarter-14](images/Install-WVDStarter-14.png)
 
 
+
+### Auto-deallocate unused VDIs
+
+he version from 2020.02.09 supports a new feature to deallocate per automatically personal assigned session hosts are not used over a specific time. If you have an older installation, you need to update it.
+
+This feature runs in the background and is independent of users logged on to the web site of WVD Starter. It's monitors session hosts and deallocates them if there was no session for at least the last n-minutes.
+To use this feature, configure the following settings on the web app running WVD Starter.
+
+- config:autoDeallocateMinutes
+  Define the minimum time in minutes after no session is connected to deallocate the session host ;0 to disable.
+- config:autoDeallocateHostPools
+  A comma-separated string value with the name of the host pools which should be processed. Add  Use the real name (not the friendly name). An empty value handles all persistent host pools.
+- config:autoDeallocateCronJobMinutes
+  Define the time in minutes in what interval the engine checks the power state and deallocate session hosts.
+
+![Install-WVDStarter-16](images/Install-WVDStarter-16.png)
+
+Hints:
+
+- Use group or local policies to log off disconnected sessions after a specific time.
+- Use a value for config:autoDeallocateMinutes high enough to allow users to log in after the start of the session host.
+- The effective time of deallocating sessions varies because of the different actions, caches, and triggering the cronjob. It can take twice of the configured time of config:autoDeallocateMinutes or config:autoDeallocateCronJobMinutes.
+- Don't forget to update the solution.
 
 ### Update your deployment to the newest version
 
