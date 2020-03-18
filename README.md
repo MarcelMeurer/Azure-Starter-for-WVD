@@ -107,7 +107,7 @@ Access the web app and log in with an user account having access to assigned VDI
 
 ### Auto-deallocate unused VDIs
 
-he version from 2020.02.09 supports a new feature to deallocate per automatically personal assigned session hosts are not used over a specific time. If you have an older installation, you need to update it.
+The version from 2020.02.09 supports a new feature to deallocate per automatically personal assigned session hosts are not used over a specific time. If you have an older installation, you need to update it.
 
 This feature runs in the background and is independent of users logged on to the web site of WVD Starter. It's monitors session hosts and deallocates them if there was no session for at least the last n-minutes.
 To use this feature, configure the following settings on the web app running WVD Starter.
@@ -135,6 +135,12 @@ Azure App Starter for WVD can be updated from GitHub very quickly. Open the web 
 ![Install-WVDStarter-15](images/Install-WVDStarter-15.png)
 
 
+
+### License
+
+The software is provided "As is", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and noninfringement. In no event shall the authors be liable for any claim, damages or other liability, whether in an action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or other dealings in the software.
+
+This software is free to use as a community edition without support. To get a special quote for a supported and commercial version, contact [sales@sepago.de](mailto:sales@sepago.de).
 
 ### Working with different Azure AD tenants (Microsoft Demo Environment)
 
