@@ -35,7 +35,7 @@
                     function(response, status, xhr) {
                         $('#vdiFrame').removeClass('vdiFrameLoader');
                         if ( status === 'error' ) {
-                            window.location.href = '@Url.Action("RefreshSession", "UserProfile")';
+                            window.location.href = '@Url.Action("Index", "Home")';
                         }
                         console.log('Stop: Getting vdi state');
                         vdiShowLoadingAnimation = true;
