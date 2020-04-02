@@ -79,11 +79,11 @@
                   },
                   {
                      "name": "config:cacheSecondsWvdSchema",
-                     "value": "110"
+                     "value": "600"
                   },
                   {
                      "name": "config:cacheSecondsSessionHost",
-                     "value": "55"
+                     "value": "550"
                   },
                   {
                      "name": "config:secondsRefreshLock",
@@ -100,6 +100,10 @@
                   {
                      "name": "config:autoDeallocateCronJobMinutes",
                      "value": "20"
+                  },
+                  {
+                     "name": "config:TenantGroupName",
+                     "value": "Default Tenant Group"
                   },
                   {
                      "name": "ida:ClientId",
