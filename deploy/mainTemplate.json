@@ -83,7 +83,7 @@
                   },
                   {
                      "name": "config:cacheSecondsSessionHost",
-                     "value": "550"
+                     "value": "30"
                   },
                   {
                      "name": "config:secondsRefreshLock",
