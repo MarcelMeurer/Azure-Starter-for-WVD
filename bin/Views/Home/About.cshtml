@@ -1,7 +1,18 @@
 ﻿<h2>About and Disclaimer</h2>
 
 <p>This software is build with love by <a href="https://blog.itprocloud.de/" target="_blank">ITProCloud.de</a></p>
-<br />You are currently running the community edition without any warranty or support. Be fair and don't use this in a commercial environment (more than 20 managed WVD personal desktops) without a quote from <a href="mailto:sales@sepago.de">sales@sepago.de</a>. Sepago offers you support and permission to use this tool in a commercial environment for very fair quote.
+@{
+    if (MvcApplication.License.IsTrial)
+    {
+        @:<br />You are currently running the community edition without any warranty or support. Be fair and don't use this in a commercial environment (more than 20 managed WVD personal desktops) without a quote from <a href="mailto:sales@sepago.de">sales@@sepago.de</a>. Sepago offers you support and permission to use this tool in a commercial environment for very fair quote.
+
+    }
+    else
+    {
+        @:<br />This instance is licensed correctly. License information: Licenses for @MvcApplication.License.HostName, @MvcApplication.License.UserCount distinct users, reporting license to sepago for billing: @MvcApplication.License.ReportToVendor, valid to: @MvcApplication.License.ValidTo
+    }
+    ;
+}
 
 <h3>Trademark Legal Notice</h3>
 <p>All product names, logos, and brands are the property of their respective owners. All company, product, and service names used in this website are for identification purposes only. The use of these names, logos, and brands does not imply endorsement.</p>
@@ -27,6 +38,21 @@
 <h3>Privacy statement</h3>
 <p>This Software accesses Microsoft's application interfaces (API) like rdbroker.wvd.microsoft.com, mrs-prod.ame.gbl/mrs-RDInfra-prod, login.microsoftonline.com and management.azure.com. Microsoft collects data for billing, monitoring, improvements, partner associations, etc. Check Microsoft legal information to read more and contact your Microsoft representative to learn more. <a href="https://azure.microsoft.com/en-us/support/legal/" target="_blank">https://azure.microsoft.com/en-us/support/legal/</a></p>
 <p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+@{
+    if (!MvcApplication.License.IsTrial)
+    {
+        @:<br />This version is licensed. If errors or unexpected behavior occurs contact sepago GmbH, Germany for support. Support is limited to the function of this engine.
+    }
+    ;
+}
+<br />
+@{
+    if (MvcApplication.License.ReportToVendor == 1)
+    {
+        @:<br />The engine is configured to report license usage in order to allow for a needs-based payment. Hashes for user object id transmitted to sepago GmbH, Germany.
+        @:<br />
+    };
+}
 
 <h3>If you do not agree with one or more points of this bending, do not use this Software.</h3>
 

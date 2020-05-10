@@ -1,9 +1,22 @@
 ﻿<h2>@ViewBag.Message</h2>
 
 <address>
-    <a href="https://blog.itprocloud.de/" target="_blank">ITProCloud.de</a><br />
+    <a href="https://blog.itprocloud.de/" target="_blank">ITProCloud.de</a> for <a href="https://www.sepago.de/en" target="_blank">sepago.de</a><br /><br />
 </address>
 
 <address>
-    <strong>Support:</strong>   <a href="mailto:marcel.meurer@ITProCloud.de">marcel.meurer@ITProCloud.de</a><br />
+    <strong>Support:</strong>
+
+    @{
+        if (MvcApplication.License.IsTrial)
+        {
+            @: <a href="mailto:marcel.meurer@ITProCloud.de">marcel.meurer@@ITProCloud.de</a><br />
+        }
+        else
+        {
+            @: <a href="mailto:marcel.meurer@ITProCloud.de">support@@sepago.de</a> <a href="mailto:marcel.meurer@ITProCloud.de">marcel.meurer@@sepago.de</a><br />
+        }
+        ;
+    }
+
 </address>

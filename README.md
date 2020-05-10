@@ -6,7 +6,7 @@ Users can easily log on to the web app using their Azure AD credentials. The per
 ### Roadmap
 
 - [x] Preview
-- [ ] Review preview and make some improvements
+- [x] Review preview and make some improvements
 - [x] Automatically deallocate unused VDIs / session hosts
 - [ ] ...
 
@@ -109,7 +109,10 @@ Access the web app and log in with an user account having access to assigned VDI
 
 The version from 2020.02.09 supports a new feature to deallocate per automatically personal assigned session hosts are not used over a specific time. If you have an older installation, you need to update it.
 
-This feature runs in the background and is independent of users logged on to the web site of WVD Starter. It's monitors session hosts and deallocates them if there was no session for at least the last n-minutes.
+This feature runs in the background and is independent of users logged on to the web site of WVD Starter. It's monitors session hosts and de-allocates them if there was no session for at least the last n-minutes. 
+
+**Note:** If the engine is still running and a session host / VM has been de-allocated by the engine, don't start this VM from the portal. If no user connects, the VM will still be running.
+
 To use this feature, configure the following settings on the web app running WVD Starter.
 
 - config:autoDeallocateMinutes
@@ -128,9 +131,16 @@ Hints:
 - The effective time of deallocating sessions varies because of the different actions, caches, and triggering the cronjob. It can take twice of the configured time of config:autoDeallocateMinutes or config:autoDeallocateCronJobMinutes.
 - Don't forget to update the solution.
 
+### Windows Virtual Desktop Spring Update
+
+The version from May the 10th supports the WVD Spring update. To activate the spring update configure the following settings on the web app running WVD Starter.
+
+- config:featureMode
+  0=Fall update only, 1=Spring and Fall update, 2=Spring update only
+
 ### Update your deployment to the newest version
 
-Azure App Starter for WVD can be updated from GitHub very quickly. Open the web app in the Azure portal, navigate to "Deploymen Center" and click "Refresh". This pulls a newer version from the repo to update the app.
+Azure App Starter for WVD can be updated from GitHub very quickly. Open the web app in the Azure portal, navigate to "Deployment Center" and click "Refresh". This pulls a newer version from the repo to update the app.
 
 ![Install-WVDStarter-15](images/Install-WVDStarter-15.png)
 
@@ -140,7 +150,12 @@ Azure App Starter for WVD can be updated from GitHub very quickly. Open the web 
 
 The software is provided "As is", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and noninfringement. In no event shall the authors be liable for any claim, damages or other liability, whether in an action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or other dealings in the software.
 
-This software is free to use as a community edition without support. To get a special quote for a supported and commercial version, contact [sales@sepago.de](mailto:sales@sepago.de).
+This software is free to use as a community edition without support for non-commercial environments. To get a special quote for a supported and commercial version, contact [sales@sepago.de](mailto:sales@sepago.de).
+
+To activate a license code change the settings on the web app running WVD Starter:
+
+- LicenseKey
+  Enter the license key provided
 
 ### Working with different Azure AD tenants (Microsoft Demo Environment)
 

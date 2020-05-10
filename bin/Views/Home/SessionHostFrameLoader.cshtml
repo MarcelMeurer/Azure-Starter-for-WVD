@@ -22,11 +22,18 @@
         width: 100%;
     }
 </style>
-<p><a id="refresh" class="btn btn-default">Refresh</a><p>You are using the community edition. Get a supported or commercial quote from <a href="mailto:sales@sepago.de">sales@sepago.de</a>. Check 'About' to learn more.</p>
+
+<p>
+    <a id="refresh" class="btn btn-default">Refresh</a>
+    @{
+        if (MvcApplication.License.IsTrial)
+        {
+        <p>You are using the community edition. Get a supported or commercial quote from <a href="mailto:sales@sepago.de">sales@sepago.de</a>. Check 'About' to learn more.</p>
+    };
+    }
 <script type="text/javascript">
     $(function() {
         var vdiShowLoadingAnimation = true;
-        
         $('#refresh').on('click',
             function() {
                 console.log('Start: Getting vdi state');
@@ -41,16 +48,27 @@
                         vdiShowLoadingAnimation = true;
                     });
             });
-        setInterval(function() {
-                console.log('Refreshing');
-                vdiShowLoadingAnimation = false;
-                $('#refresh').click();
-            },
-            30 * 1000);
+        // only on a change: StartAutoRefresh();
         $('#refresh').click();
     });
     var vdiSelectedSessionHost = '';
     var vdiNewPowerState = '';
+
+    function StartAutoRefresh() {
+        window.refreshCounter = 6;
+        window.refreshInterval=setInterval(function() {
+                console.log('Refreshing: '+window.refreshCounter);
+                vdiShowLoadingAnimation = false;
+                window.refreshCounter--;
+                if (window.refreshCounter < 1) {
+                    clearInterval(window.refreshInterval);
+                    console.log('Stop auto refresh');
+                } else {
+                    $('#refresh').click();
+                }
+            },
+            40 * 1000);
+    };
 
     function VdiChangePowerState(sessionHost, powerState) {
         //alert(id+'   '+ name);
@@ -69,6 +87,7 @@
                 console.log('Changing power state for session host ' + vdiSelectedSessionHost + ' to ' + vdiNewPowerState+' - OK!');
                 vdiShowLoadingAnimation = false;
                 $('#refresh').click();
+                StartAutoRefresh();
             },
             error: function(msg) {
                 console.log('Changing power state for session host ' + vdiSelectedSessionHost + ' to ' + vdiNewPowerState+' - FAILED!');
@@ -78,20 +97,20 @@
     }
 </script>
 
-<div class="modal fade" id="vdiConfirmChangePowerState" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                Toggle power state of session host
-            </div>
-            <div class="modal-body">
-                <span id="vdiConfirmText"></span>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="VdiChangePowerStateConfirmed();">OK</button>
+    <div class="modal fade" id="vdiConfirmChangePowerState" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    Toggle power state of session host
+                </div>
+                <div class="modal-body">
+                    <span id="vdiConfirmText"></span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="VdiChangePowerStateConfirmed();">OK</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 

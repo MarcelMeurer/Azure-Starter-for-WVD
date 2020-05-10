@@ -79,7 +79,7 @@
                   },
                   {
                      "name": "config:cacheSecondsWvdSchema",
-                     "value": "600"
+                     "value": "1800"
                   },
                   {
                      "name": "config:cacheSecondsSessionHost",
@@ -104,6 +104,14 @@
                   {
                      "name": "config:TenantGroupName",
                      "value": "Default Tenant Group"
+                  },
+                  {
+                     "name": "config:featureMode",
+                     "value": "1"
+                  },
+                  {
+                     "name": "LicenseKey",
+                     "value": ""
                   },
                   {
                      "name": "ida:ClientId",
