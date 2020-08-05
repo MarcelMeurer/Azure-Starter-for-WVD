@@ -127,7 +127,23 @@
                   },
                   {
                      "name": "ida:AADInstance",
-                     "value": "https://login.microsoftonline.com/"
+                     "value": ""
+                  },
+                  {
+                     "name": "custom:LogoUrl",
+                     "value": ""
+                  },
+                  {
+                     "name": "custom:Header",
+                     "value": ""
+                  },
+                  {
+                     "name": "custom:CSS",
+                     "value": ""
+                  },
+                  {
+                     "name": "custom:IgnoreAboutAndContact",
+                     "value": ""
                   },
                   {
                      "name": "PROJECT",

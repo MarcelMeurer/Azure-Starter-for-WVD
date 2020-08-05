@@ -8,7 +8,7 @@ Users can easily log on to the web app using their Azure AD credentials. The per
 - [x] Preview
 - [x] Review preview and make some improvements
 - [x] Automatically deallocate unused VDIs / session hosts
-- [ ] ...
+- [x] Allow some customization
 
 ### Screenshot
 
