@@ -138,6 +138,31 @@ The version from May the 10th supports the WVD Spring update. To activate the sp
 - config:featureMode
   0=Fall update only, 1=Spring and Fall update, 2=Spring update only
 
+
+
+### Customization
+
+A licensed version can be customized with a logo and a custom header. Additionally, a custom css file can be referenced. Start customizing by adding or editing the app setting on the deployed web app (all settings are optional):
+
+custom:LogoUrl
+
+custom:Header
+
+custom:CSS
+
+custom:IgnoreAboutAndContact
+
+
+
+| Setting                      | Value                                                        |
+| ---------------------------- | ------------------------------------------------------------ |
+| custom:LogoUrl               | Url to you logo                                              |
+| custom:Header                | A custom text like "VDI Starter for Company"                 |
+| custom:CSS                   | Url to a custom css file (use an Azure blob storage and configure the CORS setting to let it work) |
+| custom:IgnoreAboutAndContact | "1" remove the buttons for About and Contact in the web app  |
+
+
+
 ### Update your deployment to the newest version
 
 Azure App Starter for WVD can be updated from GitHub very quickly. Open the web app in the Azure portal, navigate to "Deployment Center" and click "Refresh". This pulls a newer version from the repo to update the app.
