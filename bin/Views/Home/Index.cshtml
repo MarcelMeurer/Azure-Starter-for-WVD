@@ -1,5 +1,8 @@
-﻿@{
-    ViewBag.Title = "ITProCloud";
+﻿@if (@MvcApplication.CustomHeaderText=="")
+{
+    ViewBag.Title = "ITProCloud - VDI Starter";
+} else{
+    ViewBag.Title = MvcApplication.CustomHeaderText;
 }
 
 @Html.Partial("SessionHostFrameLoader")

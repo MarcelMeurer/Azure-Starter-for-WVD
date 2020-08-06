@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - @MvcApplication.CustomHeaderText</title>
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -30,13 +30,14 @@
                 @if (MvcApplication.CustomLogoUrl != "")
                 {
                     <a href="/">
-                        <img src="@MvcApplication.CustomLogoUrl" alt="@MvcApplication.CustomHeaderText" class="navbar" height="40"/>
+                        <img src="@MvcApplication.CustomLogoUrl" alt="@MvcApplication.CustomHeaderText" class="navbar-logo"/>
                     </a>
                 }
                 else
                 {
-                    @Html.ActionLink(@MvcApplication.CustomHeaderText, "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
                 }
+                @Html.ActionLink(@MvcApplication.CustomHeaderText, "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
 
             </div>
             <div class="navbar-collapse collapse">

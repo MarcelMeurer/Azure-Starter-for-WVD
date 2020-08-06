@@ -4347,8 +4347,13 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     border-radius: 0;
   }
 }
+.navbar-logo {
+    float: left;
+    height: 50px;
+    padding: 0 20px 0 0;
+    vertical-align: top;
+}
 .navbar-brand {
-  float: left;
   height: 50px;
   padding: 15px 15px;
   font-size: 18px;
