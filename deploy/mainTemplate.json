@@ -127,7 +127,7 @@
                   },
                   {
                      "name": "ida:AADInstance",
-                     "value": ""
+                     "value": "https://login.microsoftonline.com/"
                   },
                   {
                      "name": "custom:LogoUrl",
