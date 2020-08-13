@@ -88,10 +88,21 @@
                 vdiShowLoadingAnimation = false;
                 $('#refresh').click();
                 StartAutoRefresh();
+                console.log("Status: ",msg);
             },
-            error: function(msg) {
-                console.log('Changing power state for session host ' + vdiSelectedSessionHost + ' to ' + vdiNewPowerState+' - FAILED!');
-                alert("There was an error while changing the power state:\n" + msg.responseText);
+            error: function(msg, textStatus, errorThrown) {
+                if (msg.status < 400 && msg.status > 299) {
+                    // redirect to login page
+                    console.log("Redirecting to login page / reloading full site");
+                    alert("Your session timed out. Select OK to reload this web site.");
+                    location.reload();
+
+                } else {
+                    console.log('Changing power state for session host ' + vdiSelectedSessionHost + ' to ' + vdiNewPowerState+' - FAILED!');
+                    alert("There was an error while changing the power state:\n\n" + textStatus+"\n\nStatus code: "+msg.status);
+                    console.log("Status: ",msg);
+                }
+
             }
         });
     }
