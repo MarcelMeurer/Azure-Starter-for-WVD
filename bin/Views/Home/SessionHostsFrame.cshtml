@@ -44,8 +44,16 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-2"><img src="~/Content/images/power-off-line.png" alt="Toggle power state" OnClick="VdiChangePowerState('@item.SessionHostName','@nextPowerState');" class="img-responsive" style="min-width: 20px" width="20"></div>
-                <div class="col-sm-8"><b align="center">@item.SessionHostName.Split('.')[0]</b></div>
+                <div class="col-sm-2"><img src="~/Content/images/power-off-line.png" alt="Toggle power state" OnClick="VdiChangePowerState('@item.SessionHostName','@nextPowerState');" class="img-responsive" style="min-width: 20px" width="20" title="Toggle power state"></div>
+                <div class="col-sm-6"><b align="center">@item.SessionHostName.Split('.')[0]</b></div>
+                @if (!item.LastPowerState.Contains("deallocated"))
+                {
+                    <div class="col-sm-2"><img src="~/Content/images/reset-update.png" alt="Restart VM" OnClick="VdiChangePowerState('@item.SessionHostName','restart');" class="img-responsive" style="min-width: 20px" width="20" title="Restart VM"></div>
+                }
+                else
+                {
+                    <div class="col-sm-2"></div>
+                }
                 <div class="col-sm-2"><img src="~/Content/images/info-circle-line.png" alt="Info" class="img-responsive" style="min-width: 20px" width="20" title="@infoMessage"></div>
             </div>
         </div>
