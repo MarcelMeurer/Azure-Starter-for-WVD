@@ -110,6 +110,10 @@
                      "value": "1"
                   },
                   {
+                     "name": "config:showLinkToHtlm5",
+                     "value": "1"
+                  },
+                  {
                      "name": "LicenseKey",
                      "value": ""
                   },

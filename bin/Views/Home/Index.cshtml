@@ -1,12 +1,27 @@
-﻿@if (@MvcApplication.CustomHeaderText=="")
+﻿@using WVDStarter.Models
+@if (@MvcApplication.CustomHeaderText == "")
 {
     ViewBag.Title = "ITProCloud - VDI Starter";
-} else{
+}
+else
+{
     ViewBag.Title = MvcApplication.CustomHeaderText;
 }
 
 @Html.Partial("SessionHostFrameLoader")
 
+@if (@WVD.ShowLinkToHtlm5 != 0)
+{
+    <p>Access your assigned desktop with the <a href="ms-rd:">native Windows Virtual Desktop Client</a> or access the HTML 5 web site:</p>
+    if (WVD.FeatureMode == 0 || WVD.FeatureMode == 1)
+    {
+        <a href="https://rdweb.wvd.microsoft.com/arm/webclient/index.html" target="_blank">Start your classic resources</a><br/>
+    }
+    if (WVD.FeatureMode == 1 || WVD.FeatureMode == 2)
+    {
+        <a href="https://rdweb.wvd.microsoft.com/arm/webclient/index.html" target="_blank">Start your virtual resources</a><br/>
+    }
 
+    }
 
 
