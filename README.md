@@ -83,6 +83,8 @@ New-RdsRoleAssignment -TenantName "Builder City" -RoleDefinitionName "RDS Reader
 
 Open the Azure portal and go to the resource groups. Go into each resource group containing your Azure VMs / VDIs / session hosts "Virtual Machine Contributor" (not the classic one), click “Access control (IAM)” -> select “Add” -> Add role assignment. Select “contributor” and search in “select” for your service principal name. Click the principal and save the settings.
 
+**WVD Spring Update:** Add the service principal with the Reader Role permission to the resource group containing the host pools
+
 ![Install-WVDStarter-12](images/Install-WVDStarter-12.png)
 
 ![Install-WVDStarter-13](images/Install-WVDStarter-13.png)
@@ -99,7 +101,7 @@ Restart the web app.
 
 ![Install-WVDStarter-11](images/Install-WVDStarter-11.png)
 
-Access the web app and log in with an user account having access to assigned VDIs / session hosts
+Access the web app and log in with an user account having access to assigned VDIs / session hosts. Recommendation: Do this once with a global admin to consent in behalf of all users.
 
 ![Install-WVDStarter-14](images/Install-WVDStarter-14.png)
 
@@ -137,6 +139,7 @@ The version from May the 10th supports the WVD Spring update. To activate the sp
 
 - config:featureMode
   0=Fall update only, 1=Spring and Fall update, 2=Spring update only
+- Add the service principal with the Reader Role permission to the resource group containing the host pools
 
 
 
