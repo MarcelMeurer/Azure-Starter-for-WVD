@@ -141,7 +141,22 @@ The version from May the 10th supports the WVD Spring update. To activate the sp
   0=Fall update only, 1=Spring and Fall update, 2=Spring update only
 - Add the service principal with the Reader Role permission to the resource group containing the host pools
 
+### Remote Desktop to VM support
 
+If you configure, you can list tagged VMs in Azure for a user and allow users to start and stop this VM - independently from WVD. The user can then access the VM directly via RDP on the internal IP address. It's for administrative work only (check the MS licensing to do that) and allows multiple VMs per user/admin. The user/admin doesn't need access to the Azure Portal to do that. Keep in mind that auto-deallocating will not work for this kind of VMs.
+
+Screen shot: [https://twitter.com/MarcelMeurer/status/1323655038624038918](https://twitter.com/MarcelMeurer/status/1323655038624038918)
+
+- config:featureMode
+  0	Classic (Fall update)
+  1	ARM, Classic
+  2	ARM
+  3	Classic, RDS
+  4	ARM, Classic, RDS
+  5	ARM, RDS
+  6	RDS
+- Add the service principal with the Virtual Machine Contributor Role permission to the resource group containing the VMs
+- Tag the VM with the UPN of the user: **RDS.User**
 
 ### Customization
 
