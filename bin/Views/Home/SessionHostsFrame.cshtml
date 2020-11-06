@@ -54,14 +54,14 @@
                 {
                     <div class="col-sm-2"></div>
                 }
-                @if (!item.SxSStackVersion.StartsWith("RDS:"))
+                @if (item.CustomDirectConnect)
                 {
-                    <div class="col-sm-2"><img src="~/Content/images/info-circle-line.png" alt="Info" class="img-responsive" style="min-width: 20px" width="20" title="@infoMessage"></div>
+                    var ip = item.CustomConnection;
+                    <div class="col-sm-2"><a href="@string.Concat(Url.Action("Launch", "Data"),"/",ip.Replace(".","-"))"><img src="~/Content/images/chromecast.png" alt="Info" class="img-responsive" style="min-width: 20px" width="20" title="Connect via RDP Client"></a></div>
                 }
                 else
                 {
-                    var ip = item.SxSStackVersion.Replace("RDS:", "");
-                    <div class="col-sm-2"><a href="@string.Concat(Url.Action("Launch", "Data"),"/",ip.Replace(".","-"))"><img src="~/Content/images/chromecast.png" alt="Info" class="img-responsive" style="min-width: 20px" width="20" title="Connect via RDP Client"></a></div>
+                    <div class="col-sm-2"><img src="~/Content/images/info-circle-line.png" alt="Info" class="img-responsive" style="min-width: 20px" width="20" title="@infoMessage"></div>
                 }
             </div>
         </div>
