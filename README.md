@@ -195,6 +195,8 @@ The software is provided "As is", without warranty of any kind, express or impli
 
 This software is free to use as a community edition without support for non-commercial environments. To get a special quote for a supported and commercial version, contact [sales@sepago.de](mailto:sales@sepago.de).
 
+The legal owner of this solution is sepago Gmbh, Dillenburger Str. 83, 51105 Cologne, Germany - https://www.sepago.com
+
 To activate a license code change the settings on the web app running WVD Starter:
 
 - LicenseKey
@@ -209,7 +211,6 @@ Usually, the WVD tenant and the resources (sessions hosts) are in the same AAD t
 ### Deploy to Azure
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMarcelMeurer%2FAzure-Starter-for-WVD%2Fmaster%2Fdeploy%2FmainTemplate.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a>
-
 
 
 
