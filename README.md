@@ -1,5 +1,5 @@
-# Azure Starter for Windows Virtual Desktop
-Azure Starter for WVD is a self-service portal to let users start and deallocate there own personal VDI's running in Windows Virtual Desktop.
+# Azure Starter for Azure Virtual Desktop
+Azure Starter for WVD is a self-service portal to let users start and deallocate their own personal VDI's running in Azure Virtual Desktop and Azure Virtual Desktop (Classic). Additionally, it can automatically deallocate session hosts, perfect with the "Power-on-Connect" feature. This solution is provided from sepago GmbH, Germany. Support: [support@sepago.de](mailto:support@sepago.de)
 
 Users can easily log on to the web app using their Azure AD credentials. The personal assigned VDI's are listed can be switched on or off. Switching off deallocates the VDI in Azure to avoid unnecessary costs.
 
@@ -133,7 +133,7 @@ Hints:
 - The effective time of deallocating sessions varies because of the different actions, caches, and triggering the cronjob. It can take twice of the configured time of config:autoDeallocateMinutes or config:autoDeallocateCronJobMinutes.
 - Don't forget to update the solution.
 
-### Windows Virtual Desktop Spring Update
+### Azure Virtual Desktop (portal integrated, ARM)
 
 The version from May the 10th supports the WVD Spring update. To activate the spring update configure the following settings on the web app running WVD Starter.
 
