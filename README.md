@@ -1,4 +1,7 @@
-# Azure Starter for Azure Virtual Desktop
+# Reference to a complete AVD solution
+**Check out the comprehensive solution for Azure Virtual Desktop: Hydra for Azure Virtual Desktop: https://github.com/MarcelMeurer/WVD-Hydra**
+
+## Azure Starter for Azure Virtual Desktop
 Azure Starter for WVD is a self-service portal to let users start and deallocate their own personal VDI's running in Azure Virtual Desktop and Azure Virtual Desktop (Classic). Additionally, it can automatically deallocate session hosts, perfect with the "Power-on-Connect" feature. This solution is provided from sepago GmbH, Germany. Support: [support@sepago.de](mailto:support@sepago.de)
 
 Users can easily log on to the web app using their Azure AD credentials. The personal assigned VDI's are listed can be switched on or off. Switching off deallocates the VDI in Azure to avoid unnecessary costs.
